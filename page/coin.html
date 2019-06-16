@@ -1,0 +1,65 @@
+<!--
+Copyright 2019 Cotpear Member System (CMS) Authors. All rights reserved.
+BLOCK: coin
+-->
+<!-- 標題 -->
+<h2>Yis Coin</h2>
+<div id="CMS-userCoin">
+  <!-- 使用者帳號 -->
+  <p id="CMS-userCoin_uid"></p>
+  <!-- 使用者金幣 -->
+  <p id="CMS-userCoin_coin"></p>
+</div>
+<!-- 加值說明 -->
+<div id="CMS-userCoin_purchaseRemind">
+  <li class="purchaseReminder">加值時請聯絡客服中心</li>
+  <li class="purchaseReminder">加值清提供您的付款方式,上面的UID</li>
+</div>
+<script>
+window.CMScoinPageSettings={
+  "block":{
+    "uid":"CMS-userCoin_uid",
+    "coin":"CMS-userCoin_coin"
+  },
+  "text":{
+    "uid":"{{name}}你好! 您的UID為:{{uid}}",
+    "coin":"目前擁有{{coin}}元"
+  }
+}  
+//避免undefined時指定方法
+if(!window.CMS){window.CMS=function(){}}
+  
+window.CMS.prototype.writeCoinToPage=function(coin,user){
+  var uidText=(
+    CMScoinPageSettings.text.uid
+    .replace(/{{coin}}/,coin)
+    .replace(/{{name}}/,user.displayName)
+    .replace(/{{uid}}/,user.uid)
+  )
+  var coinText=(
+    CMScoinPageSettings.text.coin
+    .replace(/{{coin}}/,coin)
+    .replace(/{{name}}/,user.displayName)
+    .replace(/{{uid}}/,user.uid)
+  )
+  
+  $("#"+CMScoinPageSettings.block.uid).html(uidText)
+  $("#"+CMScoinPageSettings.block.coin).html(coinText)
+}
+window.CMS.prototype.limitLogin=true
+</script>
+
+<style>
+  #CMS-userCoin{
+    
+  }
+  #CMS-userCoin_uid{
+    
+  }
+  #CMS-userCoin_coin{
+    
+  }
+  #CMS-userCoin_purchaseRemind{
+    
+  }
+</style>

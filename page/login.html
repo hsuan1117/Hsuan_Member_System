@@ -1,0 +1,134 @@
+<!--
+  模組化經營 勿使用行內CSS
+-->
+<p id="CMS-info">
+  目前系統公開測試當中，並無特別付費、會員特別服務等，只是“系統測試”
+</p>
+<div id="loginForm">
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">帳號</span>
+      </div>
+      <input type="email" placeholder="電子郵件" class="form-control">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">密碼</span>
+      </div>
+      <input type="password" placeholder="密碼" class="form-control">
+    </div>
+    <small id="emailHelp" class="form-text text-muted"><i class="fas fa-lock"></i> HTTPS 為你的資訊安全把關</small>
+    <br>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <button id="btn_signIn" type="submit" class="btn btn-primary active btn-block">登入</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container row justify-content-center">
+    <div class="btn-group btn-block col-10" role="group">
+      <button id="btn_iforget" class="btn btn-warning">忘記密碼</button>
+      <button id="btn_register" class="btn btn-success">註冊</button>
+      <button id="btn_gSignIn" class="btn btn-info">Google登入</button>
+    </div>
+  </div>
+</div>
+
+<!-- 預設的警告窗 -->
+<div id="alert_hide">
+  <div id="customeAlertBlock" class="alert alert-danger" role="alert"  style="display:none;"></div><br>
+</div>
+
+<script>
+  function customeAlert(text){
+    $("#customeAlertBlock").html(text)
+    $("#customeAlertBlock").show()
+  }
+  function cleanEffectHtml(){
+    //簡潔網頁構造
+    $(".post-title-container").hide()
+    $(".post-header").hide()
+    $(".post-share-buttons").hide()
+    $(".return_link").hide()
+  }
+  $({
+    $("#btn_signIn").click(()=>{
+    LogIn(
+      $("#emailInput").val(),
+      $("#pwdInput").val()
+    )
+    })
+   $("#btn_gSignIn").click(()=>{
+    gLogIn()
+  })
+  $("#btn_iforget").click(()=>{
+    window.location.href=SETS$page.iforget
+  })
+  $("#btn_register").click(()=>{
+    window.location.href="account-register.html"
+  })
+})
+
+
+
+function gLogIn(email,password){
+    var provider = new firebase
+                       .auth
+                       .GoogleAuthProvider();
+    /*
+    provider.addScope(
+ 'https://www.googleapis.com/auth/contacts.readonly'
+    );
+    */
+    firebase.auth().languageCode = 'tw';
+    firebase.auth().useDeviceLanguage();
+    
+    /* do Google Sign in */
+    firebase.auth()
+            .signInWithPopup(provider)
+            .then(function(result){
+      var token = result.credential.accessToken
+      var user = result.user
+      //alert('登入成功')
+      doAfterLogin()
+    }).catch(function(error){
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(errorList[errorCode])
+    });
+}
+  
+window.CMS.prototype.doAfterLogin=function(user){
+  
+};
+
+$(window).keydown(function(event){
+  if(event.keyCode == 13){
+    event.preventDefault();
+    
+  }
+});
+</script>
+
+<style>
+  #CMS-info{
+    color:black;
+    display:block;
+    text-align:center;
+    background-color:#cbdaf2
+  }
+  
+/*
+button {
+  border-radius:5px;
+  border-style:outset;
+  width:340px;
+}
+input {
+  border-radius:5px;
+}
+*/
+</style>
