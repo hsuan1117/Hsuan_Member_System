@@ -165,16 +165,16 @@ $(function() {
 	new HMS().init();
 	switch (location.pathname) {
 		case HMSsettings.page.coin:
-
+			//new HMS().go("coin");
 			break;
 		case HMSsettings.page.login:
-
+			//new HMS().go("login");
 			break;
 		case HMSsettings.page.register:
-
+			//new HMS().go("register");
 			break;
 		case HMSsettings.page.setting:
-
+			//new HMS().go("setting");
 			break;
 		default:
 
