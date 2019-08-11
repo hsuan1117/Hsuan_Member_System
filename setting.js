@@ -2,27 +2,27 @@ var HMSsettings = {
 	//頁面設定
 	"page": {
 		//登入頁面
-		"login": "",
+		"login": "/p/MS-login.html",
 		//註冊頁面
-		"register": "",
+		"register": "/p/MS-register.html",
 		//設定頁面
-		"setting": "",
+		"setting": "/p/MS-setting.html",
 		//金幣頁面
-		"coin": "",
+		"coin": "/p/MS-cash.html",
 		//Home頁
 		"home": "/"
 	},
 	//按鈕選擇器
 	"btn": {
-		"login": "",
-		"register": "",
-		"setting": "",
-		"coin": "",
-		"logout": ""
+		"login": "sidebar_LoginButton",
+		"register": "sidebar_RegisterButton",
+		"setting": "sidebar_Login_setAccount",
+		"coin": "sidebar_Login_cash",
+		"logout": "sidebar_LogoutButton"
 	},
 	"block": {
-		"status": "",
-		"memberSystemSidebarPanel": ""
+		"status": "sidebar_LoginStatus",
+		"memberSystemSidebarPanel": "divGroup_btn_sidebar_ms-system"
 	},
 	"text": {
 		"status": {
@@ -32,7 +32,7 @@ var HMSsettings = {
 			"limitLogin": "請登入後重試"
 		}
 	},
-	errorList: {
+	"errorList": {
 		"auth/weak-password": "密碼太弱，請使用6位以上密碼",
 		"auth/email-already-in-use": "此帳號已使用過了，請至登入頁面進行登入",
 		"auth/invalid-email": "電子郵件格式錯誤",
